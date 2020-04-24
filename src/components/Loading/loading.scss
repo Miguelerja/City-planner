@@ -1,0 +1,20 @@
+.loading{
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #FDC41E;
+  position: absolute;
+  top: 35%;
+  left: 35%;
+}
+
+@media(min-width: 760px){
+  .loading{
+    left: 45%;
+  }
+}
+
+@media(min-width: 1024px){
+  .loading{
+    left: 45%;
+  }
+}
