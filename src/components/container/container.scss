@@ -1,0 +1,9 @@
+@import '../../globalVars/variables';
+@import '../../globalVars/mixins';
+
+.header {
+  display: flex;
+  justify-content: center;
+  color: $white;
+  font-size: calculateRem($h1-font-size);
+}
