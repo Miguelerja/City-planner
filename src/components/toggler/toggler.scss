@@ -1,0 +1,32 @@
+@import '../../globalVars/variables';
+@import '../../globalVars/mixins';
+
+.toggler{
+  display: flex;
+  justify-content: center;
+}
+
+.btn{
+  border: none;
+  height: calculateRem(32px);
+  width: calculateRem(150px);
+  margin: calculateRem() 0;
+  color: white;
+  font-size: calculateRem(18px);
+}
+
+.btn:first-of-type{
+  border-bottom-left-radius: calculateRem($base-border-radius);
+  border-top-left-radius: calculateRem($base-border-radius);
+  &.active {
+    background-color: $secondary-color;
+  }
+}
+
+.btn:last-of-type{
+  border-bottom-right-radius: calculateRem($base-border-radius);
+  border-top-right-radius: calculateRem($base-border-radius);
+  &.active {
+    background-color: $secondary-color;
+  }
+}

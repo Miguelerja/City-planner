@@ -1,0 +1,6 @@
+@import './globalVars/variables';
+
+body {
+  font-family: $font-stack;
+  background-color: $primary-color;
+}
