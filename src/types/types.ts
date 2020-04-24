@@ -10,6 +10,14 @@ interface ApiResponse {
   [key: string]: string | number;
 };
 
+export interface ApiPostCall {
+  title: string;
+  content: string;
+  lat?: string;
+  long?: string;
+  image_url?: string;
+}
+
 type Provider<T> = React.ComponentType<{
   value: T;
   children: React.ReactNode;

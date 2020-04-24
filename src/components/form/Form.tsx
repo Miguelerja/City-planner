@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-
+// import { useApiPostData } from '../../context/api-context';
 interface FormData {
-  city: string;
-  description: string;
+  title: string;
+  content: string;
   latitude: string;
   longitude: string;
 };
@@ -10,8 +10,8 @@ interface FormData {
 export const Form = () => {
   const [open, setOpen] = useState<boolean>(false);
   const [formdata, setFormData] = useState<FormData>({
-    city: '',
-    description: '',
+    title: '',
+    content: '',
     latitude: '',
     longitude: '',
   });
@@ -24,8 +24,15 @@ export const Form = () => {
     setFormData({...formdata, [(event.target as any).name]: (event.target as any).value});
   };
 
-  const handleBlur = (event: React.FocusEvent<HTMLInputElement>) => {
-    (event.target as any).value = '';
+  const handleSubmitForm = async () => {
+    // const response = await useApiPostData(formdata);
+    setFormData({
+      title: '',
+      content: '',
+      latitude: '',
+      longitude: '',
+    });
+    setOpen(false);
   };
 
   const renderForm = () => {
@@ -33,21 +40,21 @@ export const Form = () => {
       <form>
         <label className="label">
           City name
-          <input className="input" onBlur={handleBlur} onChange={handleChange} type="text" name="city" required />
+          <input className="input" onChange={handleChange} type="text" name="title" required />
         </label>
         <label className="label">
           Description
-          <input className="input" onBlur={handleBlur} onChange={handleChange} type="text" name="description" required />
+          <input className="input" onChange={handleChange} type="text" name="content" required />
         </label>
         <label className="label">
           Latitude
-          <input className="input" onBlur={handleBlur} onChange={handleChange} type="text" name="latitude" />
+          <input className="input" onChange={handleChange} type="text" name="latitude" />
         </label>
         <label className="label">
           Longitude
-          <input className="input" onBlur={handleBlur} onChange={handleChange} type="text" name="longitude" />
+          <input className="input" onChange={handleChange} type="text" name="longitude" />
         </label>
-
+        <button onClick={handleSubmitForm}>Send</button>
       </form>
     );
   };

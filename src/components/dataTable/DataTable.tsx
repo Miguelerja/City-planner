@@ -1,11 +1,11 @@
 import React, { useContext } from 'react';
-import { apiDataContext } from '../../context/api-context';
+import { apiStateContext } from '../../context/api-context';
 import { DATA_HEADERS } from '../../globalVars/constans';
 import { parseDate } from '../../utils/dataManipulation';
 import './datatables.scss'; 
 
 export const DataTable = () => {
-  const { data } = useContext(apiDataContext);
+  const { data } = useContext(apiStateContext);
 
   const renderTableHeaders = () => (
     <thead className="table-head">

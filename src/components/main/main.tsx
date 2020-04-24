@@ -1,5 +1,5 @@
 import React, {useContext, useState} from 'react';
-import { apiDataContext } from '../../context/api-context';
+import { apiStateContext } from '../../context/api-context';
 import { Loading } from '../Loading/Loading';
 import { Toggler } from '../toggler/Toggler';
 import { Map } from '../map/Map';
@@ -8,7 +8,7 @@ import './main.scss';
 
 export const Main = () => {
   const [activeSection, setActiveSection] = useState<string>('map');
-  const { loading } = useContext(apiDataContext);
+  const { loading } = useContext(apiStateContext);
 
   const renderSection = (activeSection: string) => {
     if (activeSection === 'map') {

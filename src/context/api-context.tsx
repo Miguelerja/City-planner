@@ -1,17 +1,36 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useReducer } from 'react';
 import { default as api } from '../utils/api';
-import { ApiDataProviderProps, Data } from '../types/types';
+import { ApiPostCall, ApiDataProviderProps, Data } from '../types/types';
 
-export const apiDataContext = React.createContext<Data>({loading: true, data: []});
+type Action = { type: string, payload: Data };
+type Dispatch = (action: Action) => void;
+
+export const apiStateContext = React.createContext<Data>({loading: true, data: []});
+export const apiDispatchContext = React.createContext<Dispatch | undefined>(undefined);
+
+function apiReducer(state: Data, action: Action) {
+  switch (action.type) {
+    case 'get': {
+      return {...state, loading: action.payload.loading, data: action.payload.data};
+    }
+    default: {
+      throw new Error(`Unhandled action type: ${action.type}`)
+    }
+  }
+}
 
 export const ApiDataProvider = ({children}: ApiDataProviderProps) => {
-  const [loading, setLoading] = useState<boolean>(true);
-  const [data, setData] = useState([]);
+  const [state, dispatch] = useReducer(apiReducer, {loading: true, data: []})
 
   const getData = async () => {
-    const data = await api.getPostList();
-    setData(data);
-    setLoading(false);
+    const data = await api.getList();
+    dispatch({
+      type: 'get',
+      payload: {
+        loading: false,
+        data,
+      }
+    });
   };
 
   useEffect(() => {
@@ -19,8 +38,15 @@ export const ApiDataProvider = ({children}: ApiDataProviderProps) => {
   }, []);
 
   return (
-    <apiDataContext.Provider value={{loading, data}}>
-      {children}
-    </apiDataContext.Provider>
+    <apiStateContext.Provider value={state}>
+      <apiDispatchContext.Provider value={dispatch}>
+        {children}
+      </apiDispatchContext.Provider>
+    </apiStateContext.Provider>
   );
+}
+
+export const useApiPostData = async (data: ApiPostCall) => {
+  const response = await api.postListItem(data);
+  return response;
 }
