@@ -3,11 +3,11 @@ import { apiDataContext } from '../../context/api-context';
 import { Loading } from '../Loading/Loading';
 import { Toggler } from '../toggler/Toggler';
 import { Map } from '../map/Map';
-import { DataTable } from '../dataTable/DataTable';
-import './container.scss';
+import { DataSection } from '../dataSection/DataSection';
+import './main.scss';
 
-function Container() {
-  const [activeSection, setActiveSection] = useState('map');
+export const Main = () => {
+  const [activeSection, setActiveSection] = useState<string>('map');
   const { loading } = useContext(apiDataContext);
 
   const renderSection = (activeSection: string) => {
@@ -15,7 +15,7 @@ function Container() {
       return (<Map />)
     }
 
-    return (<DataTable />)
+    return (<DataSection />)
   };
 
   const selectSection = (name: string) => {
@@ -33,5 +33,3 @@ function Container() {
     </div>
   );
 };
-
-export default Container;
