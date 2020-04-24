@@ -1,0 +1,1 @@
+export const DATA_HEADERS = ['City', 'Description', 'Latitude', 'Longitude', 'Created in'];
