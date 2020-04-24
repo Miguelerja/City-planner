@@ -1,27 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { default as api } from '../utils/api';
-
-interface ApiResponse {
-  id: number,
-  title: string,
-  content: string,
-  lat: string,
-  long: string,
-  image_url: string,
-  created_at: string,
-  updated_at: string
-};
-
-type Provider<T> = React.ComponentType<{
-  value: T;
-  children: React.ReactNode;
-}>;
-
-interface ApiDataProviderProps {
-  children?: React.ReactNode;
-}
-
-type Data = {loading: boolean, data: Array<ApiResponse>};
+import { ApiDataProviderProps, Data } from '../types/types';
 
 export const apiDataContext = React.createContext<Data>({loading: true, data: []});
 
