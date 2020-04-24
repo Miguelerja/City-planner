@@ -5,7 +5,7 @@ import { ApiDataProviderProps, Data } from '../types/types';
 export const apiDataContext = React.createContext<Data>({loading: true, data: []});
 
 export const ApiDataProvider = ({children}: ApiDataProviderProps) => {
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState<boolean>(true);
   const [data, setData] = useState([]);
 
   const getData = async () => {

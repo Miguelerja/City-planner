@@ -5,7 +5,7 @@ import './toggler.scss';
 type ToggleProps = { selectSection: (name: string) => void };
 
 export const Toggler = ({ selectSection }: ToggleProps) => {
-  const [activeSection, setActiveSection] = useState('map');
+  const [activeSection, setActiveSection] = useState<string>('map');
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
     selectSection((event.target as any).name);

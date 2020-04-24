@@ -1,11 +1,11 @@
 import React from 'react';
 import { ApiDataProvider } from '../context/api-context';
-import Container from './container/container';
+import { Main } from './main/main';
 
 function App() {
   return (
     <ApiDataProvider>
-      <Container />
+      <Main />
     </ApiDataProvider>
   );
 }

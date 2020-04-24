@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './loading.scss';
 
 export const Loading = () => {
-  const [loadingText, setLoadingText] = useState('Loading');
+  const [loadingText, setLoadingText] = useState<string>('Loading');
 
   useEffect(() => {
     const interval = window.setInterval(() => {
