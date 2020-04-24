@@ -1,0 +1,10 @@
+@import './variables';
+
+@function calculateRem($size: $base-font-size) {
+  $remSize: $size / $base-font-size;
+  @return #{$remSize}rem;
+}
+
+@mixin fontSize($size) {
+  font-size: calculateRem($size);
+}
