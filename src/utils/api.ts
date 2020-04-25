@@ -22,4 +22,16 @@ const postListItem = async (data: ApiPostCall) => {
   return response.json();
 };
 
-export default { getList, postListItem };
+const deleteListItem = async (id: number) => {
+  const response = await fetch(`${API_URL}/${API_VERSION}/posts/${id}`, {
+    method: 'DELETE',
+    mode: 'cors',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+  });
+
+  return response;
+};
+
+export default { deleteListItem, getList, postListItem };

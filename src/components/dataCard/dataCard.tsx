@@ -1,22 +1,26 @@
-import React, {useState} from 'react';
-import classnames from 'classnames';
+import React, { useContext } from 'react';
 import { ApiPostCall } from '../../types/types';
 import './dataCard.scss'; 
+import { apiDispatchContext, apiStateContext, deleteData } from '../../context/api-context';
 
 type DataCardProps = {
   info: ApiPostCall;
 };
 
 export const DataCard = ({ info }: DataCardProps) => {
-  const [isHovered, setIsHovered] = useState<boolean>(false);
+  const { data: cities } = useContext(apiStateContext);
+  const dispatch = useContext(apiDispatchContext);
   const { title, content, image_url = null } = info;
-  
-  const flipCard = () => {
-    setIsHovered(prevState => !prevState)
-  };
 
+  const handleDelete = () => {
+    const cityId = cities.find(city => city.content === content)?.id;
+    if (cityId) {
+      deleteData(dispatch, cityId);
+    };
+  };
+  
   return (
-    <div className="card" onMouseEnter={flipCard} onMouseLeave={flipCard}>
+    <div className="card">
       <div className="card-inner">
         <div className="card-front">
           {image_url === null 
@@ -35,6 +39,7 @@ export const DataCard = ({ info }: DataCardProps) => {
         <div className="card-back">
           <h2 className="name">{title}</h2>
           <p className="description">{content}</p>
+          <button className="btn-round btn-delete" onClick={handleDelete}>Delete</button>
         </div>
       </div>
     </div>
