@@ -24,7 +24,9 @@ export const DataTable = () => {
           if (
             property === 'id' || 
             property === 'image_url' || 
-            property === 'updated_at') 
+            property === 'updated_at' ||
+            property === 'lat' ||
+            property === 'long') 
             {
               continue;
             }
@@ -32,7 +34,6 @@ export const DataTable = () => {
             const processedDate = parseDate(city[property]);
             cells.push(<td key={city[property]}>{processedDate}</td>);
             continue;
-            
           }
             
           cells.push(<td key={city[property]}>{city[property]}</td>);
