@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
-// import { useApiPostData } from '../../context/api-context';
+import React, { useContext, useState } from 'react';
+import { apiDispatchContext, postData } from '../../context/api-context';
+
 interface FormData {
   title: string;
   content: string;
@@ -8,6 +9,7 @@ interface FormData {
 };
 
 export const Form = () => {
+  const dispatch = useContext(apiDispatchContext);
   const [open, setOpen] = useState<boolean>(false);
   const [formdata, setFormData] = useState<FormData>({
     title: '',
@@ -15,6 +17,16 @@ export const Form = () => {
     latitude: '',
     longitude: '',
   });
+
+  const resetState = () => {
+    setFormData({
+      title: '',
+      content: '',
+      latitude: '',
+      longitude: '',
+    });
+    setOpen(false);
+  };
 
   const handleClick = () => {
     setOpen(prevState => !prevState);
@@ -25,14 +37,8 @@ export const Form = () => {
   };
 
   const handleSubmitForm = async () => {
-    // const response = await useApiPostData(formdata);
-    setFormData({
-      title: '',
-      content: '',
-      latitude: '',
-      longitude: '',
-    });
-    setOpen(false);
+    postData(dispatch, formdata);
+    resetState();
   };
 
   const renderForm = () => {

@@ -13,6 +13,9 @@ const postListItem = async (data: ApiPostCall) => {
   const response = await fetch(`${API_URL}/${API_VERSION}/posts`, {
     method: 'POST',
     mode: 'cors',
+    headers: {
+      'Content-Type': 'application/json'
+    },
     body: JSON.stringify(data),
   });
 

@@ -8,33 +8,53 @@ type Dispatch = (action: Action) => void;
 export const apiStateContext = React.createContext<Data>({loading: true, data: []});
 export const apiDispatchContext = React.createContext<Dispatch | undefined>(undefined);
 
-function apiReducer(state: Data, action: Action) {
+const apiReducer = (state: any, action: Action) => {
   switch (action.type) {
     case 'get': {
-      return {...state, loading: action.payload.loading, data: action.payload.data};
+      return {loading: action.payload.loading, data: action.payload.data};
+    }
+    case 'post': {
+      const updatedData = [...state.data, action.payload.data];
+      return {loading: action.payload.loading, data: updatedData};
     }
     default: {
-      throw new Error(`Unhandled action type: ${action.type}`)
+      throw new Error(`Unhandled action type: ${action.type}`);
     }
+  };
+};
+
+export const getData = async (dispatch: Dispatch) => {
+  const data = await api.getList();
+  dispatch({
+    type: 'get',
+    payload: {
+      loading: false,
+      data,
+    }
+  });
+};
+
+export const postData = async (dispatch: Dispatch | undefined, data: ApiPostCall) => {
+  if(dispatch === undefined) {
+    console.log('This property must be called within a provider');
+    return
   }
-}
+
+  const response = await api.postListItem(data);
+
+  dispatch({
+    type: 'post',
+    payload: {
+      loading: false,
+      data: response,
+  }});
+};
 
 export const ApiDataProvider = ({children}: ApiDataProviderProps) => {
   const [state, dispatch] = useReducer(apiReducer, {loading: true, data: []})
 
-  const getData = async () => {
-    const data = await api.getList();
-    dispatch({
-      type: 'get',
-      payload: {
-        loading: false,
-        data,
-      }
-    });
-  };
-
   useEffect(() => {
-    getData();
+    getData(dispatch);
   }, []);
 
   return (
@@ -44,9 +64,4 @@ export const ApiDataProvider = ({children}: ApiDataProviderProps) => {
       </apiDispatchContext.Provider>
     </apiStateContext.Provider>
   );
-}
-
-export const useApiPostData = async (data: ApiPostCall) => {
-  const response = await api.postListItem(data);
-  return response;
 }

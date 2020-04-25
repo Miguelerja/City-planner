@@ -27,4 +27,4 @@ export interface ApiDataProviderProps {
   children?: React.ReactNode;
 }
 
-export type Data = {loading: boolean, data: Array<ApiResponse>};
+export type Data = {loading?: boolean, data: Array<ApiResponse>};
