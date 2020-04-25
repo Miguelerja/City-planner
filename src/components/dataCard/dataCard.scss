@@ -1,0 +1,15 @@
+@import '../../globalVars/mixins';
+@import '../../globalVars/variables';
+
+.card{
+  width: 40%;
+}
+
+.hidden {
+  display: none;
+}
+
+.img, .content {
+  width: 100%;
+  height: 100%;
+}

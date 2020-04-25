@@ -1,6 +1,7 @@
 import React, { useContext, useState } from 'react';
+import classnames from 'classnames';
 import { apiDispatchContext, postData } from '../../context/api-context';
-
+import './form.scss';
 interface FormData {
   title: string;
   content: string;
@@ -32,7 +33,7 @@ export const Form = () => {
     setOpen(prevState => !prevState);
   };
 
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData({...formdata, [(event.target as any).name]: (event.target as any).value});
   };
 
@@ -43,32 +44,48 @@ export const Form = () => {
 
   const renderForm = () => {
     return (
-      <form>
-        <label className="label">
-          City name
-          <input className="input" onChange={handleChange} type="text" name="title" required />
-        </label>
-        <label className="label">
-          Description
-          <input className="input" onChange={handleChange} type="text" name="content" required />
-        </label>
-        <label className="label">
-          Latitude
-          <input className="input" onChange={handleChange} type="text" name="latitude" />
-        </label>
-        <label className="label">
-          Longitude
-          <input className="input" onChange={handleChange} type="text" name="longitude" />
-        </label>
+      <form className="form">
+        <div className="input">          
+          <label className="label" >City name</label>
+            <input 
+              className="field" 
+              onChange={handleChange} 
+              type="text" 
+              name="title" 
+              required 
+            />
+        </div>
+        <div className="input">
+          <label className="label">Latitude</label>
+            <input 
+              className="field" 
+              onChange={handleChange} 
+              type="text" 
+              name="latitude" 
+            />
+        </div>
+        <div className="input">
+          <label className="label">Longitude</label>
+            <input 
+              className="field" 
+              onChange={handleChange} 
+              type="text" 
+              name="longitude" 
+            />
+        </div>
+        <div className="input">
+          <label className="label">Description</label>
+            <textarea className="textarea" onChange={handleChange} name="content" required />
+        </div>
         <button onClick={handleSubmitForm}>Send</button>
       </form>
     );
   };
 
   return (
-    <>
+    <div className="form-section">
       {open ? renderForm() : null}
-      <button className="btn-round" onClick={handleClick}>{open ? 'X' : '+'}</button>
-    </>
+      <button className={classnames('btn-round', {'active': open})} onClick={handleClick}>{open ? 'X' : '+'}</button>
+    </div>
   );
 };

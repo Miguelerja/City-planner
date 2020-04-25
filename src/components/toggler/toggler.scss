@@ -18,7 +18,9 @@
 .btn:first-of-type{
   border-bottom-left-radius: calculateRem($base-border-radius);
   border-top-left-radius: calculateRem($base-border-radius);
+  background-color: rgba($dark-grey, 0.5);
   &.active {
+    font-weight: bold;
     background-color: $secondary-color;
   }
 }
@@ -26,7 +28,9 @@
 .btn:last-of-type{
   border-bottom-right-radius: calculateRem($base-border-radius);
   border-top-right-radius: calculateRem($base-border-radius);
+  background-color: rgba($dark-grey, 0.5);
   &.active {
+    font-weight: bold;
     background-color: $secondary-color;
   }
 }

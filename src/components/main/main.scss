@@ -4,6 +4,6 @@
 .header {
   display: flex;
   justify-content: center;
-  color: $white;
+  color: $primary-color;
   font-size: calculateRem($h1-font-size);
 }

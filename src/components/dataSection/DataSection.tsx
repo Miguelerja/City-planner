@@ -1,12 +1,17 @@
-import React from 'react';
-import { DataTable } from '../dataTable/DataTable';
+import React, { useContext } from 'react';
+import { DataCard } from '..//dataCard/dataCard';
 import { Form } from '../form/Form';
+import { apiStateContext } from '../../context/api-context';
+import './dataSection.scss';
 
 export const DataSection = () => {
+  const { data: cities } = useContext(apiStateContext);
   return (
     <>
-      <DataTable />
       <Form />
+      <div className="cards">
+        {cities.map(city => <DataCard info={city} />)}
+      </div>
     </>
   );
 };
