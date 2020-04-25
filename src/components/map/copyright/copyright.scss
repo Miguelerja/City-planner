@@ -1,0 +1,5 @@
+@import '../../../globalVars/mixins';
+
+.copyright {
+  font-size: calculateRem(8px);
+}

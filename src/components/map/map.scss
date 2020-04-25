@@ -1,0 +1,12 @@
+@import '../../globalVars/mixins';
+
+.container {
+  margin: 10vh auto;
+  width: 80vw;
+  height: 60vh;
+}
+
+.marker-icon {
+  height: calculateRem();
+  width: calculateRem();
+}
