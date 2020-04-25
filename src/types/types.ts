@@ -1,4 +1,4 @@
-interface ApiResponse {
+export interface ApiResponse {
   id: number;
   title: string;
   content: string;
@@ -11,11 +11,17 @@ interface ApiResponse {
 };
 
 export interface ApiPostCall {
+  id?: number;
   title: string;
   content: string;
   lat?: string;
   long?: string;
   image_url?: string;
+}
+
+export interface ApiEditCall {
+  title?: string;
+  content?: string;
 }
 
 type Provider<T> = React.ComponentType<{

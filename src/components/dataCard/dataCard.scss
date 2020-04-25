@@ -37,10 +37,10 @@
 
 .card-back {
   height: 100%;
-  padding: 10% 0;
+  padding: 10%;
 }
 
-.name, .description, btn-delete {
+.name, .description, .btn-delete {
   transform: rotateY(180deg);
 }
 

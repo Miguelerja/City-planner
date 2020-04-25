@@ -1,6 +1,6 @@
 import React, { useEffect, useReducer } from 'react';
 import { default as api } from '../utils/api';
-import { ApiPostCall, ApiDataProviderProps, Data } from '../types/types';
+import { ApiPostCall, ApiEditCall, ApiDataProviderProps, Data } from '../types/types';
 
 type Action = { type: string, payload: Data };
 type Dispatch = (action: Action) => void;
@@ -14,6 +14,10 @@ const apiReducer = (state: any, action: Action) => {
       return {loading: action.payload.loading, data: action.payload.data};
     }
     case 'post': {
+      const updatedData = [...state.data, action.payload.data];
+      return {loading: action.payload.loading, data: updatedData};
+    }
+    case 'edit': {
       const updatedData = [...state.data, action.payload.data];
       return {loading: action.payload.loading, data: updatedData};
     }
@@ -47,6 +51,22 @@ export const postData = async (dispatch: Dispatch | undefined, data: ApiPostCall
 
   dispatch({
     type: 'post',
+    payload: {
+      loading: false,
+      data: response,
+  }});
+};
+
+export const editData = async (dispatch: Dispatch | undefined, id: number, data: ApiEditCall) => {
+  if(dispatch === undefined) {
+    console.log('This property must be called within a provider');
+    return
+  }
+
+  const response = await api.editListItem(id, data);
+
+  dispatch({
+    type: 'edit',
     payload: {
       loading: false,
       data: response,

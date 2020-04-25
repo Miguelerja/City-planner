@@ -1,7 +1,9 @@
 import React, { useContext } from 'react';
+import { Link } from 'react-router-dom';
 import { ApiPostCall } from '../../types/types';
 import './dataCard.scss'; 
 import { apiDispatchContext, apiStateContext, deleteData } from '../../context/api-context';
+import { renderImage } from '../../utils/renderImage';
 
 type DataCardProps = {
   info: ApiPostCall;
@@ -10,7 +12,7 @@ type DataCardProps = {
 export const DataCard = ({ info }: DataCardProps) => {
   const { data: cities } = useContext(apiStateContext);
   const dispatch = useContext(apiDispatchContext);
-  const { title, content, image_url = null } = info;
+  const { id, title, content, image_url = undefined } = info;
 
   const handleDelete = () => {
     const cityId = cities.find(city => city.content === content)?.id;
@@ -23,24 +25,13 @@ export const DataCard = ({ info }: DataCardProps) => {
     <div className="card">
       <div className="card-inner">
         <div className="card-front">
-          {image_url === null 
-            ? <img 
-                className="img" 
-                alt={`default landscape`} 
-                src={`${process.env.PUBLIC_URL}/pics/default.jpeg`} 
-              />
-            : <img 
-                className="img" 
-                alt={`${title} representation`} 
-                src={image_url} 
-              />
-          }
+          {renderImage(image_url, title)}
         </div>
-        <div className="card-back">
+        <Link className="card-back" key={id} to={`/${title}/${id}`}>
           <h2 className="name">{title}</h2>
           <p className="description">{content}</p>
+        </Link>
           <button className="btn-round btn-delete" onClick={handleDelete}>Delete</button>
-        </div>
       </div>
     </div>
   );
