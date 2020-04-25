@@ -15,6 +15,12 @@
   }
 }
 
+.form-section {
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+}
+
 .form {
   display: flex;
   flex-direction: row;
