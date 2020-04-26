@@ -1,7 +1,7 @@
 import React from 'react';
 
 export const renderImage = (image_url: string | undefined, title: string | undefined, className: string) => {
-  if (!image_url || !title) {
+  if (!image_url || !title || !image_url.match(/http/)) {
     return (
       <img 
           className={className} 
