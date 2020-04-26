@@ -1,0 +1,27 @@
+@import '../../globalVars/variables';
+@import '../../globalVars/mixins';
+
+.container {
+  width: 80vw;
+  height: 10vh;
+  margin: 30vh 10vw 60vh 10vw;
+  text-align: center;
+}
+
+.message, .link {
+  font-size: calculateRem($h1-font-size);
+}
+
+.message {
+  color: $primary-color;
+}
+
+.link {
+  color: $secondary-color;
+  border-bottom: 2px solid $secondary-color;
+
+  &:hover {
+    color: $primary-color;
+    border-bottom: none;
+  }
+}
