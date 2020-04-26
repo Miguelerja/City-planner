@@ -6,7 +6,7 @@ type ModalProps = {
   children: ReactNode;
 }
 
-export const Modal = React.memo(({ children }: ModalProps) => {
+const Modal = React.memo(({ children }: ModalProps) => {
   const modalRoot = document.getElementById('modal');
   if(!modalRoot) return null;
 
@@ -20,3 +20,5 @@ export const Modal = React.memo(({ children }: ModalProps) => {
 
   return ReactDOM.createPortal(children, element);
 });
+
+export default Modal;

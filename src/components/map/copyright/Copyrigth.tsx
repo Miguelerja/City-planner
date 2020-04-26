@@ -1,7 +1,7 @@
 import React from 'react';
 import './copyright.scss';
 
-export const Copyright = () => {
+const Copyright = () => {
   return(
     <span className="copyright">
       Icons made by 
@@ -15,3 +15,5 @@ export const Copyright = () => {
     </span>
   );
 };
+
+export default Copyright;

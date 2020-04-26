@@ -1,21 +1,30 @@
-import React, {useContext, useState } from 'react';
+import React, { lazy, Suspense, useContext, useState } from 'react';
 import { apiStateContext } from '../../context/api-context';
-import { Loading } from '../../components/Loading/Loading';
-import { Toggler } from '../../components/toggler/Toggler';
-import { Map } from '../../components/map/Map';
-import { DataSection } from '../../components/dataSection/DataSection';
+import Loading from '../../components/Loading/Loading';
+import Toggler from '../../components/toggler/Toggler';
 import './main.scss';
 
-export const Main = () => {
+const Map = lazy(() => import('../../components/map/Map'));
+const DataSection = lazy(() => import('../../components/dataSection/DataSection'));
+
+const Main = () => {
   const [activeSection, setActiveSection] = useState<string>('map');
   const { loading } = useContext(apiStateContext);
 
   const renderSection = (activeSection: string) => {
     if (activeSection === 'map') {
-      return (<Map />)
-    }
+      return (
+        <Suspense fallback={Loading}>
+          <Map />
+        </Suspense>
+      );
+    };
 
-    return (<DataSection />)
+    return (
+      <Suspense fallback={Loading}>
+        <DataSection />
+      </Suspense>
+    );
   };
 
   const selectSection = (name: string) => {
@@ -33,3 +42,5 @@ export const Main = () => {
     </div>
   );
 };
+
+export default Main;

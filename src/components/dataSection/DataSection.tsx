@@ -1,12 +1,12 @@
 import React, { useContext, useState } from 'react';
 import classnames from 'classnames';
-import { DataCard } from '../dataCard/DataCard';
-import { Form } from '../form/Form';
-import { Modal } from '../modal/Modal';
+import DataCard from '../dataCard/DataCard';
+import Form from '../form/Form';
+import Modal from '../modal/Modal';
 import { apiStateContext } from '../../context/api-context';
 import './dataSection.scss';
 
-export const DataSection = () => {
+const DataSection = () => {
   const [modalOpen, setModalOpen] = useState<boolean>(false);
   const { data: cities } = useContext(apiStateContext);
 
@@ -32,3 +32,5 @@ export const DataSection = () => {
     </>
   );
 };
+
+export default DataSection;

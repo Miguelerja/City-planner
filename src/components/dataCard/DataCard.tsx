@@ -9,7 +9,7 @@ type DataCardProps = {
   info: ApiPostCall;
 };
 
-export const DataCard = ({ info }: DataCardProps) => {
+const DataCard = ({ info }: DataCardProps) => {
   const { data: cities } = useContext(apiStateContext);
   const dispatch = useContext(apiDispatchContext);
   const { id, title, content, image_url = undefined } = info;
@@ -36,3 +36,5 @@ export const DataCard = ({ info }: DataCardProps) => {
     </div>
   );
 };
+
+export default DataCard;

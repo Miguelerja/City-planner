@@ -1,8 +1,8 @@
 import React from 'react';
 import { ApiDataProvider } from '../context/api-context';
-import { AppRouter } from '../router/AppRouter';
+import AppRouter from '../router/AppRouter';
 
-function App() {
+const App = () => {
   return (
     <ApiDataProvider>
       <AppRouter />

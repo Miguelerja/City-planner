@@ -2,8 +2,8 @@ import React, { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 import { ApiResponse } from '../../types/types';
-import { Loading } from '../../components/Loading/Loading';
-import { Error404 } from '../404/Error404';
+import Loading from '../../components/Loading/Loading';
+import Error404 from '../404/Error404';
 import { renderImage } from '../../utils/renderImage';
 import { apiDispatchContext, apiStateContext, editData } from '../../context/api-context';
 import './cityDetails.scss';
@@ -13,7 +13,7 @@ type FieldData = {
   editing: boolean;
 };
 
-export const CityDetails = () => {
+const CityDetails = () => {
   const { id } = useParams();
   const dispatch = useContext(apiDispatchContext);
   const { data: cities } = useContext(apiStateContext);
@@ -127,3 +127,5 @@ export const CityDetails = () => {
     </>
   );
 } 
+
+export default CityDetails;

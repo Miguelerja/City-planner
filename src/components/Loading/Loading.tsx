@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './loading.scss';
 
-export const Loading = () => {
+const Loading = () => {
   const [loadingText, setLoadingText] = useState<string>('Loading');
 
   useEffect(() => {
@@ -19,3 +19,5 @@ export const Loading = () => {
       <p className='loading'>{loadingText}</p>
     );
 };
+
+export default Loading;

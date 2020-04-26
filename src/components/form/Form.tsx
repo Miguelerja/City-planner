@@ -13,7 +13,7 @@ type FormProps = {
   handleClick?: () => void;
 };
 
-export const Form = ({ handleClick }: FormProps) => {
+const Form = ({ handleClick }: FormProps) => {
   const dispatch = useContext(apiDispatchContext);
   const [formData, setFormData] = useState<FormData>({
     title: '',
@@ -105,3 +105,5 @@ export const Form = ({ handleClick }: FormProps) => {
     </form>
   );
 };
+
+export default Form;

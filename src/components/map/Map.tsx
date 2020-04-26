@@ -3,11 +3,11 @@ import MapGL, { Marker } from 'react-map-gl';
 import { apiStateContext } from '../../context/api-context';
 import { MAP_STYLE } from '../../globalVars/mapConfig';
 import './map.scss';
-import { Copyright } from './copyright/Copyrigth';
+import Copyright from './copyright/Copyrigth';
 
 const MAPBOX_TOKEN = process.env.REACT_APP_MAPBOX_KEY;
 
-export const Map = () => {
+const Map = () => {
   const { data: cities } = useContext(apiStateContext);
   const [viewport, setViewport] = useState({
     latitude: parseFloat(cities[0].lat),
@@ -52,3 +52,5 @@ export const Map = () => {
     </div>
   );
 };
+
+export default Map;

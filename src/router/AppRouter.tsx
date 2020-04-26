@@ -1,22 +1,23 @@
-import React from 'react';
+import React, { Suspense, lazy } from 'react';
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
-import { Main } from '../pages/main/main';
-import { CityDetails } from '../pages/cityDetails/CityDetails';
-import { Error404 } from '../pages/404/Error404';
+import Loading from '../components/Loading/Loading';
 
+const Main = lazy(() => import('../pages/main/main'));
+const CityDetails = lazy(() => import('../pages/cityDetails/CityDetails'));
+const Error404 = lazy(() => import('../pages/404/Error404'));
 
-export const AppRouter = () => {
+const AppRouter = () => {
   return (
     <Router>
-      <Switch>
-        <Route exact path="/">
-          <Main />
-        </Route>
-        <Route exact path="/:city/:id">
-          <CityDetails />
-        </Route>
-        <Route component={Error404} />
-      </Switch>
+      <Suspense fallback={Loading}>
+        <Switch>
+          <Route exact path="/" component={Main} />
+          <Route exact path="/:city/:id" component={CityDetails} />
+          <Route component={Error404} />
+        </Switch>
+      </Suspense>
     </Router>
   );
 };
+
+export default AppRouter;
