@@ -23,7 +23,7 @@ export const DataSection = () => {
         {modalOpen ? 'X' : '+'}
       </button>
       {modalOpen
-        ? <Modal><Form /></Modal>
+        ? <Modal><Form handleClick={handleClick} /></Modal>
         : null
       }
       <div className="cards">

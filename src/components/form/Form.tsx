@@ -9,7 +9,11 @@ interface FormData {
   image_url: string;
 };
 
-export const Form = () => {
+type FormProps = {
+  handleClick?: () => void;
+};
+
+export const Form = ({ handleClick }: FormProps) => {
   const dispatch = useContext(apiDispatchContext);
   const [formdata, setFormData] = useState<FormData>({
     title: '',
@@ -36,6 +40,7 @@ export const Form = () => {
   const handleSubmitForm = async () => {
     postData(dispatch, formdata);
     resetState();
+    if (handleClick) handleClick();
   };
 
   return (
