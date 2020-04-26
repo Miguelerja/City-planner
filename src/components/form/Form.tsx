@@ -4,9 +4,9 @@ import './form.scss';
 interface FormData {
   title: string;
   content: string;
-  latitude: string;
-  longitude: string;
-  image_url: string;
+  lat: string;
+  long: string;
+  'image_url': string;
 };
 
 type FormProps = {
@@ -15,30 +15,30 @@ type FormProps = {
 
 export const Form = ({ handleClick }: FormProps) => {
   const dispatch = useContext(apiDispatchContext);
-  const [formdata, setFormData] = useState<FormData>({
+  const [formData, setFormData] = useState<FormData>({
     title: '',
     content: '',
-    latitude: '',
-    longitude: '',
-    image_url: '',
+    lat: '',
+    long: '',
+    'image_url': '',
   });
 
   const resetState = () => {
     setFormData({
       title: '',
       content: '',
-      latitude: '',
-      longitude: '',
-      image_url: '',
+      lat: '',
+      long: '',
+      'image_url': '',
     });
   };
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setFormData({...formdata, [(event.target as any).name]: (event.target as any).value});
+    setFormData({...formData, [(event.target as any).name]: (event.target as any).value});
   };
 
   const handleSubmitForm = async () => {
-    postData(dispatch, formdata);
+    postData(dispatch, formData);
     resetState();
     if (handleClick) handleClick();
   };
@@ -76,7 +76,7 @@ export const Form = ({ handleClick }: FormProps) => {
             className="field" 
             onChange={handleChange} 
             type="text" 
-            name="latitude" 
+            name="lat" 
           />
         </div>
         <div className="input">
@@ -85,7 +85,7 @@ export const Form = ({ handleClick }: FormProps) => {
             className="field" 
             onChange={handleChange} 
             type="text" 
-            name="longitude" 
+            name="long" 
           />
         </div>
         <div className="input">
@@ -94,7 +94,7 @@ export const Form = ({ handleClick }: FormProps) => {
             className="field" 
             onChange={handleChange} 
             type="text" 
-            name="image" 
+            name="image_url" 
           />
         </div>
       </div>

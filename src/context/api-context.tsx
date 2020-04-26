@@ -47,7 +47,6 @@ export const postData = async (dispatch: Dispatch | undefined, data: ApiPostCall
   }
 
   const response =  await api.postListItem(data);
-
   dispatch({
     type: 'post',
     payload: {
