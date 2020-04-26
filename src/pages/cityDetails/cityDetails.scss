@@ -7,11 +7,24 @@
 }
 
 .title-container {
+  color: $secondary-color;
+}
+
+.description-container {
+  margin-bottom: calculateRem();
+}
+
+.description-container, .title-container {
+  display: flex;
+  flex-direction: row;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  color: $secondary-color;
+}
+
+.detail-img{
+  height: 60vh;
 }
 
 .detail-img, .title-container {
@@ -19,15 +32,24 @@
 }
 
 .city-name {
-  margin: calculateRem();
+  margin: calculateRem() 0;
   font-size: calculateRem(64px);
 }
 
 .edit-btn {
+  border: none;
+  background-color: transparent;
+  color: $secondary-color;
+  font-weight: bold;
+  margin: auto calculateRem();
   transform: rotateY(180deg);
-  width: calculateRem(32px);
-  height: calculateRem(32px);
-  font-size: calculateRem(24px);
+  width: calculateRem(20px);
+  height: calculateRem(20px);
+  font-size: calculateRem(18px);
+
+  &:hover {
+    color: $primary-color;
+  }
 }
 
 .page-content{

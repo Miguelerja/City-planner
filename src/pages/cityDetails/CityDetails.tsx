@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 import { ApiResponse } from '../../types/types';
@@ -6,14 +6,25 @@ import { Loading } from '../../components/Loading/Loading';
 import { Error404 } from '../404/Error404';
 import { default as api } from '../../utils/api';
 import { renderImage } from '../../utils/renderImage';
-import { apiDispatchContext, editData } from '../../context/api-context';
 import './cityDetails.scss';
+
+type FieldData = {
+  value: string;
+  editing: false;
+};
 
 export const CityDetails = () => {
   const { id } = useParams();
-  const dispatch = useContext(apiDispatchContext);
   const [loading, setLoading] = useState<boolean>(true);
-  const [listItem, setListItem] = useState<ApiResponse | undefined>();
+  const [listItem, setListItem] = useState<ApiResponse | undefined>();  
+  const [titleData, setTitleData] = useState<FieldData>({
+    value: '',
+    editing: false,
+  });
+  const [contentData, setContentData] = useState<FieldData>({
+    value: '',
+    editing: false,
+  });
 
   const getListItem = async (id: string | undefined) => {
     if(id === undefined) {
@@ -31,7 +42,6 @@ export const CityDetails = () => {
   }, [id]);
 
   const handleClick = () => {
-
   };
 
   const renderCityDetails = () => {
@@ -41,7 +51,7 @@ export const CityDetails = () => {
         <div className="title-container">
           <h2 className="city-name">{listItem?.title}</h2>
           <button
-            className="btn-round edit-btn"
+            className="edit-btn"
             onClick={handleClick} 
             name="title"
           >	
@@ -49,7 +59,16 @@ export const CityDetails = () => {
           </button>
         </div>
         <div className="page-content">
-          <p>{listItem?.content}</p>
+          <div className="description-container">
+            <p>{listItem?.content}</p>
+            <button
+              className="edit-btn"
+              onClick={handleClick} 
+              name="title"
+            >	
+              &#9998;
+            </button>
+          </div>
           <Link to="/">Go back</Link>
         </div>
       </div>
