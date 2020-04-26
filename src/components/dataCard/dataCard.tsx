@@ -31,7 +31,7 @@ export const DataCard = ({ info }: DataCardProps) => {
           <h2 className="name">{title}</h2>
           <p className="description">{content}</p>
         </Link>
-          <button className="btn-round btn-delete" onClick={handleDelete}>Delete</button>
+          <button className="btn-round btn-delete" onClick={handleDelete}>&#9850;</button>
       </div>
     </div>
   );

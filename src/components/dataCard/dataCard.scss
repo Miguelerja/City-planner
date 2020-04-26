@@ -51,3 +51,7 @@
 .description {
   color: $black;
 }
+
+.btn-delete {
+  margin-right: calculateRem(24px);
+}
