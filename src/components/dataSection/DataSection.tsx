@@ -1,14 +1,26 @@
-import React, { useContext } from 'react';
-import { DataCard } from '..//dataCard/dataCard';
+import React, { useContext, useState } from 'react';
+import classnames from 'classnames';
+import { DataCard } from '../dataCard/dataCard';
 import { Form } from '../form/Form';
+import { Modal } from '../modal/Modal';
 import { apiStateContext } from '../../context/api-context';
 import './dataSection.scss';
 
 export const DataSection = () => {
+  const [modalOpen, setModalOpen] = useState<boolean>(false);
   const { data: cities } = useContext(apiStateContext);
+
+  const handleClick = () => {
+    setModalOpen(prevState => !prevState);
+  };
+
   return (
     <>
-      <Form />
+      <button className={classnames('btn-round', {'active': modalOpen})} onClick={handleClick}>{modalOpen ? 'X' : '+'}</button>
+      {modalOpen
+        ? <Modal><Form /></Modal>
+        : null
+      }
       <div className="cards">
         {cities.map(city => <DataCard key={city.id} info={city} />)}
       </div>
