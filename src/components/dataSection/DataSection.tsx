@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react';
 import classnames from 'classnames';
-import { DataCard } from '../dataCard/dataCard';
+import { DataCard } from '../dataCard/DataCard';
 import { Form } from '../form/Form';
 import { Modal } from '../modal/Modal';
 import { apiStateContext } from '../../context/api-context';
