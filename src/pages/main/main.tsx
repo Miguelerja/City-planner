@@ -1,4 +1,4 @@
-import React, {useContext, useState} from 'react';
+import React, {useContext, useState } from 'react';
 import { apiStateContext } from '../../context/api-context';
 import { Loading } from '../../components/Loading/Loading';
 import { Toggler } from '../../components/toggler/Toggler';

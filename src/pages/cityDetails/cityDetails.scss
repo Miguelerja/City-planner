@@ -49,6 +49,10 @@
   font-size: calculateRem(64px);
 }
 
+.content-input {
+  overflow: hidden;
+}
+
 .edit-btn {
   border: none;
   background-color: transparent;

@@ -4,9 +4,8 @@ import { useParams } from 'react-router-dom';
 import { ApiResponse } from '../../types/types';
 import { Loading } from '../../components/Loading/Loading';
 import { Error404 } from '../404/Error404';
-import { default as api } from '../../utils/api';
 import { renderImage } from '../../utils/renderImage';
-import { apiDispatchContext, editData } from '../../context/api-context';
+import { apiDispatchContext, apiStateContext, editData } from '../../context/api-context';
 import './cityDetails.scss';
 
 type FieldData = {
@@ -17,26 +16,21 @@ type FieldData = {
 export const CityDetails = () => {
   const { id } = useParams();
   const dispatch = useContext(apiDispatchContext);
+  const { data: cities } = useContext(apiStateContext);
 
   const [loading, setLoading] = useState<boolean>(true);
+  const [isUpdating, setIsUpdating] = useState<boolean>(false);
   const [listItem, setListItem] = useState<ApiResponse | undefined>();  
   const [titleData, setTitleData] = useState<FieldData>({ value: '', editing: false });
   const [contentData, setContentData] = useState<FieldData>({ value: '', editing: false });
 
-  const getListItem = async (id: string | undefined) => {
-    if(id === undefined) {
-      console.error('id invalid');
-      return;
-    }
+  useEffect(() => {
+    const data = cities.find(city => city.id.toString() === id);
 
-    const data = await api.getListItem(parseInt(id));
     setListItem(data);
     setLoading(false);
-  };
-
-  useEffect(() => {
-    getListItem(id);
-  }, [id]);
+    setIsUpdating(false);
+  }, [id, isUpdating, cities]);
 
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     if (!id) return;
@@ -57,16 +51,18 @@ export const CityDetails = () => {
     };
   };
 
-  const handleEnter = (event: React.KeyboardEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleEnter = async(event: React.KeyboardEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     if (!id) return;
     if(event.key !== 'Enter') return;
 
     if((event.target as any).name === 'title') {
-      editData(dispatch, parseInt(id), { title: titleData.value });
+      await editData(dispatch, parseInt(id), { title: titleData.value });
+      setIsUpdating(true);
       setTitleData({value: '', editing: false});
     } else {
-      editData(dispatch, parseInt(id), { content: contentData.value });
-      setTitleData({value: '', editing: false});
+      await editData(dispatch, parseInt(id), { content: contentData.value });
+      setIsUpdating(true);
+      setContentData({value: '', editing: false});
     };
   };
 

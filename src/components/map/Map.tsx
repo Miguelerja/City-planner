@@ -17,6 +17,7 @@ export const Map = () => {
     pitch: 0
   });
 
+
   const renderMarkers = () => {
     return cities.map(city => {
       if (!city.long || !city.lat) {
