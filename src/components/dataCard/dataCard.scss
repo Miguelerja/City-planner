@@ -3,7 +3,7 @@
 
 .card{
   width: 40%;
-  height: 30vh;
+  height: 40vh;
 
   &:hover .card-inner {
     transform: rotateY(180deg);
@@ -53,5 +53,5 @@
 }
 
 .btn-delete {
-  margin-right: calculateRem(24px);
+  margin-right: calculateRem(56px);
 }

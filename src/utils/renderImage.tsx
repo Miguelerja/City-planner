@@ -1,12 +1,18 @@
 import React from 'react';
 
+const setDefaultImageSrc = () => {
+  const randomNumber = Math.floor(Math.random() * 4 + 1);
+
+  return `/pics/default${randomNumber}.jpeg`
+};
+
 export const renderImage = (image_url: string | undefined, title: string | undefined) => {
   if (!image_url || !title) {
     return (
       <img 
           className="img" 
           alt={`default landscape`} 
-          src={`${process.env.PUBLIC_URL}/pics/default.jpeg`} 
+          src={setDefaultImageSrc()} 
       />
     );
   };
