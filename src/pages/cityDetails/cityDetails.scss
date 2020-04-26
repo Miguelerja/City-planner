@@ -31,7 +31,19 @@
   width: 100%;
 }
 
-.city-name {
+.input-detail {
+  border: none;
+  text-align: center;
+  background-color: $light-grey;
+  border-bottom: 2px solid $secondary-color;
+  color: $secondary-color;
+
+  &::placeholder{
+    color: $secondary-color;
+  }
+}
+
+.city-name, .title-input {
   margin: calculateRem() 0;
   font-size: calculateRem(64px);
 }

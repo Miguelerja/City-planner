@@ -10,7 +10,7 @@ import './cityDetails.scss';
 
 type FieldData = {
   value: string;
-  editing: false;
+  editing: boolean;
 };
 
 export const CityDetails = () => {
@@ -41,7 +41,23 @@ export const CityDetails = () => {
     getListItem(id);
   }, [id]);
 
-  const handleClick = () => {
+  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+    if (!id) return;
+    
+    if((event.target as any).name === 'title') {
+      setTitleData(prevState => ({ ...prevState, editing: !prevState.editing}))
+    } else {
+      setContentData(prevState => ({ ...prevState, editing: !prevState.editing }))
+    }
+  };
+
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    event.persist();
+    if ((event.target as any).name === 'title') {
+      setTitleData(prevState => ({ ...prevState, value: event.target.value}))
+    } else {
+      setContentData(prevState => ({ ...prevState, value: event.target.value}))
+    };
   };
 
   const renderCityDetails = () => {
@@ -49,7 +65,14 @@ export const CityDetails = () => {
       <div className="city-details">
         {renderImage(listItem?.image_url, listItem?.title, 'detail-img')}
         <div className="title-container">
-          <h2 className="city-name">{listItem?.title}</h2>
+          {titleData.editing
+            ? <input
+                onChange={handleChange} 
+                className="input-detail title-input" 
+                placeholder="City name" 
+                name="title" />
+            : <h2 className="city-name">{listItem?.title}</h2>
+          }
           <button
             className="edit-btn"
             onClick={handleClick} 
@@ -60,11 +83,20 @@ export const CityDetails = () => {
         </div>
         <div className="page-content">
           <div className="description-container">
-            <p>{listItem?.content}</p>
+            {contentData.editing
+              ? <textarea
+                  onChange={handleChange} 
+                  className="input-detail content-input" 
+                  cols={150}
+                  rows={1}
+                  placeholder="Description" 
+                  name="content" />
+              : <p>{listItem?.content}</p>
+            }
             <button
               className="edit-btn"
               onClick={handleClick} 
-              name="title"
+              name="content"
             >	
               &#9998;
             </button>
