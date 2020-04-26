@@ -16,7 +16,12 @@ export const DataSection = () => {
 
   return (
     <>
-      <button className={classnames('btn-round', {'active': modalOpen})} onClick={handleClick}>{modalOpen ? 'X' : '+'}</button>
+      <button
+        className={classnames('btn-round', 'modal-btn', {'active': modalOpen})}
+        onClick={handleClick}
+      >
+        {modalOpen ? 'X' : '+'}
+      </button>
       {modalOpen
         ? <Modal><Form /></Modal>
         : null

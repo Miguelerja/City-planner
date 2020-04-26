@@ -10,5 +10,13 @@ export const Modal = React.memo(({ children }: ModalProps) => {
   const modalRoot = document.getElementById('modal');
   if(!modalRoot) return null;
 
-  return ReactDOM.createPortal(children, modalRoot);
+  const element = document.createElement('div');
+  element.setAttribute('class', 'modal');
+
+  useEffect(() => {
+    modalRoot.appendChild(element);
+    return () => {modalRoot.removeChild(element)};
+  }, [element, modalRoot]);
+
+  return ReactDOM.createPortal(children, element);
 });

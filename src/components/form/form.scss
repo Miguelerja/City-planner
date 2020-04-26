@@ -1,40 +1,49 @@
 @import '../../globalVars/mixins';
 @import '../../globalVars/variables';
 
-.btn-round {
-  font-size: calculateRem(32px);
-  border-radius: 50%;
-  width: calculateRem(48px);
-  height: calculateRem(48px);
-  border: none;
-  background-color: $secondary-color;
-  color: $white;
-
-  &.active {
-    background-color: rgba($dark-grey, 0.5);
-  }
+.form {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;padding: calculateRem();
+  height: 80%;
 }
 
 .form-section {
   display: flex;
-  flex-direction: row-reverse;
-  align-items: center;
+  flex-direction: column;
+  width: 35%;
+  padding: 2%;
 }
 
-.form {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  width: 80%;
-  margin: calculateRem(24px) auto;
+.input {
+  margin: calculateRem() auto 0 auto;
+}
 
+.field, textarea {
+  color: $secondary-color;
+  font-weight: bold;
+  border:none;
+  background-image:none;
+  box-shadow: none;
+}
+
+.label{
+  text-align: start;
+  color: $light-grey;
+  font-weight: bold;
 }
 
 .field, .textarea {
   display: flex;
   flex-direction: column;
+  margin-top: calculateRem(3px);
 }
 
 textarea {
   resize: none;
+}
+
+.btn-submit {
+  margin: calculateRem(24px) auto;
+  align-self: center;
 }
