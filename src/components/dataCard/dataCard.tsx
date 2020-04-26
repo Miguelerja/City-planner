@@ -25,7 +25,7 @@ export const DataCard = ({ info }: DataCardProps) => {
     <div className="card">
       <div className="card-inner">
         <div className="card-front">
-          {renderImage(image_url, title)}
+          {renderImage(image_url, title, 'card-img')}
         </div>
         <Link className="card-back" key={id} to={`/${title}/${id}`}>
           <h2 className="name">{title}</h2>

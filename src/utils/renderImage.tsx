@@ -6,11 +6,11 @@ const setDefaultImageSrc = () => {
   return `/pics/default${randomNumber}.jpeg`
 };
 
-export const renderImage = (image_url: string | undefined, title: string | undefined) => {
+export const renderImage = (image_url: string | undefined, title: string | undefined, className: string) => {
   if (!image_url || !title) {
     return (
       <img 
-          className="img" 
+          className={className} 
           alt={`default landscape`} 
           src={setDefaultImageSrc()} 
       />
@@ -19,7 +19,7 @@ export const renderImage = (image_url: string | undefined, title: string | undef
 
   return (
     <img 
-      className="img" 
+      className={className} 
       alt={`${title} representation`} 
       src={image_url} 
     />

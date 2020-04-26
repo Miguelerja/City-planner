@@ -4,7 +4,7 @@ import './error404.scss';
 
 export const Error404 = () => {
   return (
-    <div className="container">
+    <div className="error-field">
     <p className="message">You look lost traveler! <span><Link className="link" to="/">Let me take you home</Link></span></p>
     </div>
   )

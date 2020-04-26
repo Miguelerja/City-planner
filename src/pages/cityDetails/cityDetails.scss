@@ -1,0 +1,35 @@
+@import '../../globalVars/variables';
+@import '../../globalVars/mixins';
+
+.city-details {
+  width: 60%;
+  margin: calculateRem() auto;
+}
+
+.title-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  color: $secondary-color;
+}
+
+.detail-img, .title-container {
+  width: 100%;
+}
+
+.city-name {
+  margin: calculateRem();
+  font-size: calculateRem(64px);
+}
+
+.edit-btn {
+  transform: rotateY(180deg);
+  width: calculateRem(32px);
+  height: calculateRem(32px);
+  font-size: calculateRem(24px);
+}
+
+.page-content{
+  text-align: center;
+}
