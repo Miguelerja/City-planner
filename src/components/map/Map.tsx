@@ -5,7 +5,7 @@ import { MAP_STYLE } from '../../globalVars/mapConfig';
 import './map.scss';
 import { Copyright } from './copyright/Copyrigth';
 
-const MAPBOX_TOKEN = 'pk.eyJ1IjoiYWplciIsImEiOiJjanNwdHJreTkweHRrM3lyMnF5eG03YmYxIn0.myLECOiJBHCAM3rF00_vXw';
+const MAPBOX_TOKEN = process.env.REACT_APP_MAPBOX_KEY;
 
 export const Map = () => {
   const { data: cities } = useContext(apiStateContext);
