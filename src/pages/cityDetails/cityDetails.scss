@@ -40,6 +40,7 @@
 
   &::placeholder{
     color: $secondary-color;
+    font-size: calculateRem();
   }
 }
 

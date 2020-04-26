@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 import { ApiResponse } from '../../types/types';
@@ -6,6 +6,7 @@ import { Loading } from '../../components/Loading/Loading';
 import { Error404 } from '../404/Error404';
 import { default as api } from '../../utils/api';
 import { renderImage } from '../../utils/renderImage';
+import { apiDispatchContext, editData } from '../../context/api-context';
 import './cityDetails.scss';
 
 type FieldData = {
@@ -15,16 +16,12 @@ type FieldData = {
 
 export const CityDetails = () => {
   const { id } = useParams();
+  const dispatch = useContext(apiDispatchContext);
+
   const [loading, setLoading] = useState<boolean>(true);
   const [listItem, setListItem] = useState<ApiResponse | undefined>();  
-  const [titleData, setTitleData] = useState<FieldData>({
-    value: '',
-    editing: false,
-  });
-  const [contentData, setContentData] = useState<FieldData>({
-    value: '',
-    editing: false,
-  });
+  const [titleData, setTitleData] = useState<FieldData>({ value: '', editing: false });
+  const [contentData, setContentData] = useState<FieldData>({ value: '', editing: false });
 
   const getListItem = async (id: string | undefined) => {
     if(id === undefined) {
@@ -45,9 +42,9 @@ export const CityDetails = () => {
     if (!id) return;
     
     if((event.target as any).name === 'title') {
-      setTitleData(prevState => ({ ...prevState, editing: !prevState.editing}))
+      setTitleData(prevState => ({ value: '', editing: !prevState.editing}))
     } else {
-      setContentData(prevState => ({ ...prevState, editing: !prevState.editing }))
+      setContentData(prevState => ({ value: '', editing: !prevState.editing }))
     }
   };
 
@@ -60,6 +57,19 @@ export const CityDetails = () => {
     };
   };
 
+  const handleEnter = (event: React.KeyboardEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    if (!id) return;
+    if(event.key !== 'Enter') return;
+
+    if((event.target as any).name === 'title') {
+      editData(dispatch, parseInt(id), { title: titleData.value });
+      setTitleData({value: '', editing: false});
+    } else {
+      editData(dispatch, parseInt(id), { content: contentData.value });
+      setTitleData({value: '', editing: false});
+    };
+  };
+
   const renderCityDetails = () => {
     return(
       <div className="city-details">
@@ -67,9 +77,10 @@ export const CityDetails = () => {
         <div className="title-container">
           {titleData.editing
             ? <input
+                onKeyUp={handleEnter}
                 onChange={handleChange} 
                 className="input-detail title-input" 
-                placeholder="City name" 
+                placeholder="Press Enter to save changes" 
                 name="title" />
             : <h2 className="city-name">{listItem?.title}</h2>
           }
@@ -81,15 +92,17 @@ export const CityDetails = () => {
             &#9998;
           </button>
         </div>
+
         <div className="page-content">
           <div className="description-container">
             {contentData.editing
               ? <textarea
+                  onKeyUp={handleEnter}
                   onChange={handleChange} 
                   className="input-detail content-input" 
-                  cols={150}
+                  cols={250}
                   rows={1}
-                  placeholder="Description" 
+                  placeholder="Press Enter to save changes" 
                   name="content" />
               : <p>{listItem?.content}</p>
             }
