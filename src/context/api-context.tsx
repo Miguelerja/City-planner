@@ -15,6 +15,7 @@ const apiReducer = (state: any, action: Action) => {
     }
     case 'post': {
       const updatedData = [...state.data, action.payload.data];
+      console.log(updatedData)
       return {loading: action.payload.loading, data: updatedData};
     }
     case 'edit': {
@@ -46,8 +47,7 @@ export const postData = async (dispatch: Dispatch | undefined, data: ApiPostCall
     return
   }
 
-  await api.postListItem(data);
-  const response = await api.getList();
+  const response =  await api.postListItem(data);
 
   dispatch({
     type: 'post',
