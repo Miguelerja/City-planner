@@ -18,8 +18,7 @@ const apiReducer = (state: any, action: Action) => {
       return {loading: action.payload.loading, data: updatedData};
     }
     case 'edit': {
-      const updatedData = [...state.data, action.payload.data];
-      return {loading: action.payload.loading, data: updatedData};
+      return {loading: action.payload.loading, data: action.payload.data};
     }
     case 'delete': {
       return {loading: action.payload.loading, data: action.payload.data};
@@ -47,7 +46,8 @@ export const postData = async (dispatch: Dispatch | undefined, data: ApiPostCall
     return
   }
 
-  const response = await api.postListItem(data);
+  await api.postListItem(data);
+  const response = await api.getList();
 
   dispatch({
     type: 'post',
