@@ -2,7 +2,8 @@ import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { ApiPostCall } from '../../types/types';
 import './dataCard.scss'; 
-import { apiDispatchContext, apiStateContext, deleteData } from '../../context/api-context';
+import { apiDispatchContext, apiStateContext } from '../../context/api-context';
+import { deleteData } from '../../context/dispatchers/apiDispatchers';
 import { renderImage } from '../../utils/renderImage';
 
 type DataCardProps = {

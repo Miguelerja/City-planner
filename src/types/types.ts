@@ -29,8 +29,6 @@ type Provider<T> = React.ComponentType<{
   children: React.ReactNode;
 }>;
 
-export interface ApiDataProviderProps {
-  children?: React.ReactNode;
-}
-
+export type Action = { type: string, payload: Data };
+export type Dispatch = (action: Action) => void;
 export type Data = {loading?: boolean, data: Array<ApiResponse>};

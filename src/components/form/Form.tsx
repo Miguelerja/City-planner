@@ -1,5 +1,6 @@
 import React, { useContext, useState } from 'react';
-import { apiDispatchContext, postData } from '../../context/api-context';
+import { apiDispatchContext } from '../../context/api-context';
+import { postData } from '../../context/dispatchers/apiDispatchers';
 import './form.scss';
 interface FormData {
   title: string;

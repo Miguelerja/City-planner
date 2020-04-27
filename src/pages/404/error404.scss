@@ -17,7 +17,7 @@
 
 .link {
   color: $secondary-color;
-  border-bottom: 2px solid $secondary-color;
+  border-bottom: calculateRem(2px) solid $secondary-color;
 
   &:hover {
     color: $primary-color;

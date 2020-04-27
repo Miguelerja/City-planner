@@ -5,7 +5,8 @@ import { ApiResponse } from '../../types/types';
 import Loading from '../../components/Loading/Loading';
 import Error404 from '../404/Error404';
 import { renderImage } from '../../utils/renderImage';
-import { apiDispatchContext, apiStateContext, editData } from '../../context/api-context';
+import { apiDispatchContext, apiStateContext } from '../../context/api-context';
+import { editData } from '../../context/dispatchers/apiDispatchers';
 import './cityDetails.scss';
 
 type FieldData = {

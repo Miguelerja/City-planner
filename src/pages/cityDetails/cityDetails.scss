@@ -34,7 +34,7 @@
   border: none;
   text-align: center;
   background-color: $light-grey;
-  border-bottom: 2px solid $secondary-color;
+  border-bottom: calculateRem(2px) solid $secondary-color;
   color: $secondary-color;
 
   &::placeholder{
