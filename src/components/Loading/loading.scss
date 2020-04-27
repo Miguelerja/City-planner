@@ -1,7 +1,9 @@
+@import '../../settings.scss';
+
 .loading{
-  font-size: 1.5rem;
+  font-size: calculateRem($h1-font-size);
   font-weight: bold;
-  color: #FDC41E;
+  color: $primary-color;
   position: absolute;
   top: 35%;
   left: 35%;

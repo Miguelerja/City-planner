@@ -1,4 +1,4 @@
-@import '../../globalVars/mixins';
+@import '../../settings.scss';
 
 .modal {
   background-color: $primary-color;
@@ -10,8 +10,8 @@
   margin: auto;
   width: calculateRem(550px);
   height: calculateRem(300px);
-  box-shadow: 0 5px 10px 2px rgba($light-grey, 0.7);
-  padding: 10px;
+  box-shadow: 0 calculateRem(5px) calculateRem(10px) calculateRem(2px) rgba($light-grey, 0.7);
+  padding: calculateRem(10px);
   text-align: center;
   border-radius: calculateRem(20px);
 }
