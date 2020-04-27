@@ -14,14 +14,14 @@ const Main = () => {
   const renderSection = (activeSection: string) => {
     if (activeSection === 'map') {
       return (
-        <Suspense fallback={Loading}>
+        <Suspense fallback={<Loading />}>
           <Map />
         </Suspense>
       );
     };
 
     return (
-      <Suspense fallback={Loading}>
+      <Suspense fallback={<Loading />}>
         <DataSection />
       </Suspense>
     );

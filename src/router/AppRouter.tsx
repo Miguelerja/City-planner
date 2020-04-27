@@ -9,7 +9,7 @@ const Error404 = lazy(() => import('../pages/404/Error404'));
 const AppRouter = () => {
   return (
     <Router>
-      <Suspense fallback={Loading}>
+      <Suspense fallback={<Loading />}>
         <Switch>
           <Route exact path="/" component={Main} />
           <Route exact path="/:city/:id" component={CityDetails} />
