@@ -3,6 +3,7 @@ import MapGL, { Marker } from 'react-map-gl';
 import { apiStateContext } from '../../context/api-context';
 import { MAP_STYLE } from '../../globalVars/mapConfig';
 import './map.scss';
+import 'mapbox-gl/dist/mapbox-gl.css';
 import Copyright from './copyright/Copyrigth';
 
 const MAPBOX_TOKEN = process.env.REACT_APP_MAPBOX_KEY;
