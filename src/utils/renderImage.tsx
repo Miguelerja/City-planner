@@ -1,12 +1,16 @@
 import React from 'react';
 
+const setDefaultImg = (event: any) => {
+  event.target.src = '/pics/default.jpeg';
+};
+
 export const renderImage = (image_url: string | undefined, title: string | undefined, className: string) => {
   if (!image_url || !title || !image_url.match(/http/)) {
     return (
       <img 
           className={className} 
-          alt={`default landscape`} 
-          src={`/pics/default.jpeg`} 
+          alt={'default landscape'} 
+          src={'/pics/default.jpeg'} 
       />
     );
   };
@@ -15,7 +19,8 @@ export const renderImage = (image_url: string | undefined, title: string | undef
     <img 
       className={className} 
       alt={`${title} representation`} 
-      src={image_url} 
+      src={image_url}
+      onError={setDefaultImg}
     />
   );
 };
