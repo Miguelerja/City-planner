@@ -4,7 +4,7 @@
   margin: 5vh auto;
   width: 80vw;
   height: 60vh;
-  box-shadow: 0 5px 10px 2px rgba($secondary-color, 0.7);
+  box-shadow: 0 calculateRem(5px) calculateRem(10px) calculateRem(2px) rgba($secondary-color, 0.7);
 }
 
 .marker-icon {

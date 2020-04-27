@@ -24,7 +24,7 @@ export interface ApiEditCall {
   content?: string;
 }
 
-type Provider<T> = React.ComponentType<{
+type Provider<T> = React.ComponentType< {
   value: T;
   children: React.ReactNode;
 }>;
